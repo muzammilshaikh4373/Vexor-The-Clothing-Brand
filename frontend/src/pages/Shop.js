@@ -20,7 +20,7 @@ export const Shop = () => {
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({ page: 1, total_pages: 0 });
 
-  const currentCategory = searchParams.get('category') || '';
+  const currentCategory = searchParams.get('category') || 'all';
   const currentSort = searchParams.get('sort') || 'newest';
   const currentPage = parseInt(searchParams.get('page') || '1');
 
