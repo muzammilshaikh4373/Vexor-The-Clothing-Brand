@@ -16,6 +16,8 @@ import { Profile } from './pages/Profile';
 import { Orders } from './pages/Orders';
 import { Wishlist } from './pages/Wishlist';
 import { AdminDashboard } from './pages/AdminDashboard';
+import { AdminProducts } from './pages/admin/AdminProducts';
+import { AdminOrders } from './pages/admin/AdminOrders';
 import './App.css';
 
 function App() {
