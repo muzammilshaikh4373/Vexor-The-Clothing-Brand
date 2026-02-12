@@ -56,6 +56,7 @@ export const AdminProducts = () => {
         ...formData,
         price: parseFloat(formData.price),
         discount_price: formData.discount_price ? parseFloat(formData.discount_price) : null,
+        cost_price: formData.cost_price ? parseFloat(formData.cost_price) : null,
         stock: parseInt(formData.stock),
         images: formData.images.split(',').map((url) => url.trim()),
         variants: formData.variants
