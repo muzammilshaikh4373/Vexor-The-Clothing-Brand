@@ -2,16 +2,17 @@ from fastapi import APIRouter, HTTPException, Depends
 from models.user import User, UserCreate, UserUpdate, LoginRequest, VerifyOTPRequest, Address
 from utils.auth import create_access_token, generate_otp, verify_otp
 from middleware.auth import get_current_user
-from motor.motor_asyncio import AsyncIOMotorClient
-import os
 import uuid
 from datetime import datetime, timezone
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# DB will be injected by server.py
+db = None
+
+def set_db(database):
+    global db
+    db = database
 
 @router.post("/login")
 async def login(request: LoginRequest):
