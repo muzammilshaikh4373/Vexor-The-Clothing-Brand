@@ -62,6 +62,7 @@ function App() {
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/products" element={<AdminProducts />} />
             <Route path="/admin/orders" element={<AdminOrders />} />
+            <Route path="/admin/invoice/:orderId" element={<Invoice />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
