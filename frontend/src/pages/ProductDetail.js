@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
-import { Heart, ShoppingBag, Star, Check } from 'lucide-react';
+import { Heart, ShoppingBag, Star, Check, User } from 'lucide-react';
 import { Button } from '../components/ui/button';
+import { Textarea } from '../components/ui/textarea';
 import { addToCart, openCart } from '../store/slices/cartSlice';
 import api from '../utils/api';
 import { toast } from 'sonner';
