@@ -78,6 +78,7 @@ export const Navbar = () => {
             <div className="flex items-center space-x-4">
               <button
                 data-testid="search-button"
+                onClick={() => setIsSearchOpen(true)}
                 className="p-2 hover:text-accent transition-colors"
               >
                 <Search className="w-5 h-5" />
