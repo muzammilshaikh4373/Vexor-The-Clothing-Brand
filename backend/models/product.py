@@ -25,6 +25,7 @@ class Product(BaseModel):
     category: str
     price: float
     discount_price: Optional[float] = None
+    cost_price: Optional[float] = None
     images: List[str] = []
     variants: List[ProductVariant] = []
     stock: int = 0
@@ -40,6 +41,7 @@ class ProductCreate(BaseModel):
     category: str
     price: float
     discount_price: Optional[float] = None
+    cost_price: Optional[float] = None
     images: List[str] = []
     variants: List[ProductVariant] = []
     stock: int = 0
@@ -51,6 +53,7 @@ class ProductUpdate(BaseModel):
     category: Optional[str] = None
     price: Optional[float] = None
     discount_price: Optional[float] = None
+    cost_price: Optional[float] = None
     images: Optional[List[str]] = None
     variants: Optional[List[ProductVariant]] = None
     stock: Optional[int] = None
