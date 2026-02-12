@@ -36,6 +36,10 @@ export const ProductDetail = () => {
           setSelectedSize(response.data.variants[0].size);
           setSelectedColor(response.data.variants[0].color);
         }
+
+        // Fetch reviews
+        const reviewsResponse = await api.get(`/reviews/product/${response.data.id}`);
+        setReviews(reviewsResponse.data);
       } catch (error) {
         console.error('Error fetching product:', error);
         toast.error('Product not found');
