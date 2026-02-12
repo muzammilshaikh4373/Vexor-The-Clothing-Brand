@@ -1,0 +1,129 @@
+{
+  "identity": {
+    "name": "VEXOR",
+    "tagline": "Premium Street & Fitness Wear",
+    "tone": "Bold, Kinetic, Exclusive, Minimal",
+    "archetype": "The Performance Pro (Hybrid Street)",
+    "aesthetic": "Hyper-Minimalism, Large Imagery, Sharp Edges",
+    "theme_preference": "light"
+  },
+  "typography": {
+    "font_family": {
+      "headings": {
+        "name": "Archivo Black",
+        "fallback": "sans-serif",
+        "usage": "Use for all H1-H3 headers. Uppercasepreferred for impact.",
+        "url": "https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap"
+      },
+      "body": {
+        "name": "Manrope",
+        "fallback": "sans-serif",
+        "usage": "Use for all body text, UI elements, and prices.",
+        "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+      }
+    },
+    "scale": {
+      "h1": "text-6xl md:text-8xl tracking-tighter uppercase font-extrabold leading-none",
+      "h2": "text-4xl md:text-6xl tracking-tight uppercase font-bold",
+      "h3": "text-2xl md:text-4xl tracking-tight font-bold",
+      "body_lg": "text-lg md:text-xl font-medium tracking-wide",
+      "body": "text-base font-normal tracking-wide",
+      "caption": "text-xs uppercase tracking-[0.2em] font-semibold text-muted-foreground"
+    }
+  },
+  "colors": {
+    "palette": {
+      "primary": "#0A0A0A",
+      "secondary": "#FFFFFF",
+      "accent": "#DC2626",
+      "background": "#FFFFFF",
+      "surface": "#F8F8F8",
+      "border": "#E5E5E5",
+      "muted": "#A3A3A3"
+    },
+    "semantic": {
+      "brand_black": "#0A0A0A",
+      "brand_red": "#DC2626",
+      "brand_white": "#FFFFFF",
+      "text_main": "#0A0A0A",
+      "text_muted": "#737373",
+      "success": "#10B981",
+      "error": "#DC2626",
+      "border_default": "#E5E5E5"
+    },
+    "rules": [
+      "NO GRADIENTS. Use solid, bold colors.",
+      "Use Accent Red (#DC2626) ONLY for CTAs and Sale tags.",
+      "Background must be predominantly WHITE for the store.",
+      "Use pure black (#000) or very dark grey (#0A0A0A) for typography."
+    ]
+  },
+  "layout": {
+    "spacing": "Generous. Use p-8 to p-24 for sections.",
+    "grid_system": "Use 'Bento' style grids. Avoid uniform 3-column grids where possible. Use spans.",
+    "container": "max-w-7xl mx-auto px-4 md:px-8",
+    "border_radius": "rounded-none (0px) for a sharp, premium street look. Buttons can be slightly rounded (rounded-sm) or pill (rounded-full) but containers must be sharp.",
+    "product_card": {
+      "style": "Minimal. No border. Full bleed image.",
+      "hover": "Scale image slightly (scale-105). Show quick add button."
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-primary text-white hover:bg-black/90 rounded-none h-12 px-8 uppercase tracking-widest text-sm font-bold transition-all",
+      "secondary": "bg-white text-black border border-black hover:bg-black hover:text-white rounded-none h-12 px-8 uppercase tracking-widest text-sm font-bold transition-all",
+      "ghost": "text-black hover:text-accent uppercase tracking-widest text-sm font-bold"
+    },
+    "inputs": {
+      "style": "bg-transparent border-b border-black/20 focus:border-black rounded-none px-0 py-4 text-lg placeholder:text-muted-foreground/50"
+    },
+    "navigation": {
+      "desktop": "Minimal top bar. Logo left, Links center, Icons right.",
+      "mobile": "Sticky bottom bar (Home, Search, Cart, Profile) + Hamburger for menu."
+    },
+    "product_card": "Aspect ratio [3/4]. Image covers 85% of height. Text below: Brand (tiny) -> Name (Bold) -> Price. No 'Add to Cart' visible until hover (desktop) or persistent icon (mobile)."
+  },
+  "motion": {
+    "library": "framer-motion",
+    "scroll": "lenis",
+    "page_transition": "Fade in + Slide up (y: 20 -> 0)",
+    "hover_effects": "Image zoom, Text underline slide, Button fill",
+    "marquee": "Use react-fast-marquee for 'NEW DROPS' or 'WORLDWIDE SHIPPING' banners."
+  },
+  "images": {
+    "strategy": "High contrast, studio lighting or urban street. Models should look confident/moody. Product shots must be crisp.",
+    "urls": {
+      "hero_main": "https://images.unsplash.com/photo-1647768617268-06697e8a91d4?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "hero_secondary": "https://images.unsplash.com/photo-1668260920944-ec171ceb8633?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "category_men": "https://images.unsplash.com/photo-1668260990796-3855d0efa823?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "category_women": "https://images.unsplash.com/photo-1544104030-d4ed20e87a86?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "category_accessories": "https://images.unsplash.com/photo-1577982886439-c25dc08b0c01?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "product_hoodie_black": "https://images.unsplash.com/photo-1647768617268-06697e8a91d4?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "product_tee_red": "https://images.unsplash.com/photo-1544104030-d4ed20e87a86?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "product_sneakers": "https://images.unsplash.com/photo-1628537439131-8b6563761676?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "banner_street": "https://images.unsplash.com/photo-1760050516414-86ef5b0c424d?crop=entropy&cs=srgb&fm=jpg&q=85"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Install 'framer-motion', 'lenis', 'react-fast-marquee' immediately.",
+    "Update index.html to include Google Fonts: Archivo Black and Manrope.",
+    "Configure Tailwind with the custom colors and font families provided.",
+    "Build a 'Layout' component that wraps the app with Lenis scroll.",
+    "Create a 'ProductCard' component that is reused everywhere.",
+    "Use 'sonner' for all notifications (Added to cart, etc).",
+    "Ensure the 'Cart Drawer' slides in from the right with a smooth spring animation.",
+    "For the Landing Page, use a 'Bento Grid' layout for the 'Trending' section.",
+    "Keep the Navbar transparent on top of the Hero, then solid white on scroll.",
+    "Use the provided image URLs for placeholders. DO NOT use generic placeholders.",
+    "Ensure 'data-testid' is added to all interactive elements."
+  ],
+  "UNIVERSAL_GUIDELINES": [
+    "Do not use gradients.",
+    "Do not use rounded corners > 4px. Prefer 0px.",
+    "Use 2x more whitespace than you think is necessary.",
+    "Never center text unless it is a massive H1 hero headline.",
+    "Interactive elements must have a clear hover state (change color, underline, or scale).",
+    "Use 'sonner' for toasts.",
+    "Mobile-first responsive design is mandatory."
+  ]
+}
