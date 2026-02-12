@@ -45,7 +45,7 @@ export const Shop = () => {
           limit: 12,
           sort_by: currentSort,
         };
-        if (currentCategory) {
+        if (currentCategory && currentCategory !== 'all') {
           params.category = currentCategory;
         }
 
