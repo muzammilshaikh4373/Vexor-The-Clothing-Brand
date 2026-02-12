@@ -5,10 +5,12 @@ import { ShoppingBag, User, Heart, Menu, Search, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toggleCart, openCart } from '../../store/slices/cartSlice';
 import { Button } from '../ui/button';
+import { SearchBar } from '../search/SearchBar';
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isSearchOpen, setIsSearchOpen] = React.useState(false);
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const { items } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
