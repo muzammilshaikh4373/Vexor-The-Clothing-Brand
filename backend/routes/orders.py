@@ -2,27 +2,25 @@ from fastapi import APIRouter, HTTPException, Depends
 from models.order import Order, OrderCreate, OrderProduct, ShippingAddress
 from middleware.auth import get_current_user
 from utils.auth import initiate_razorpay_payment, verify_razorpay_payment, send_whatsapp_message
-from motor.motor_asyncio import AsyncIOMotorClient
-import os
 import uuid
 from datetime import datetime, timezone
 from typing import Optional
 
 router = APIRouter(prefix="/orders", tags=["Orders"])
 
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+db = None
+
+def set_db(database):
+    global db
+    db = database
 
 @router.post("")
 async def create_order(order_data: OrderCreate, current_user: dict = Depends(get_current_user)):
     """Create new order"""
     order_id = str(uuid.uuid4())
     
-    # Calculate final amount
     final_amount = order_data.total_amount - order_data.discount_amount
     
-    # Validate coupon if provided
     if order_data.coupon_code:
         coupon = await db.coupons.find_one(
             {"code": order_data.coupon_code, "is_active": True},
@@ -41,13 +39,11 @@ async def create_order(order_data: OrderCreate, current_user: dict = Depends(get
         if coupon['used_count'] >= coupon['usage_limit']:
             raise HTTPException(status_code=400, detail="Coupon usage limit reached")
         
-        # Update coupon usage
         await db.coupons.update_one(
             {"code": order_data.coupon_code},
             {"$inc": {"used_count": 1}}
         )
     
-    # Handle payment
     payment_status = "pending"
     razorpay_payment_id = None
     
@@ -58,7 +54,6 @@ async def create_order(order_data: OrderCreate, current_user: dict = Depends(get
     elif order_data.payment_method == "cod":
         payment_status = "pending"
     
-    # Create order
     new_order = Order(
         id=order_id,
         user_id=current_user['user_id'],
@@ -79,7 +74,6 @@ async def create_order(order_data: OrderCreate, current_user: dict = Depends(get
     
     await db.orders.insert_one(doc)
     
-    # Update product stock
     for product in order_data.products:
         await db.products.update_one(
             {"id": product.product_id},
@@ -91,7 +85,6 @@ async def create_order(order_data: OrderCreate, current_user: dict = Depends(get
             }
         )
     
-    # Send WhatsApp notification (mock)
     user_doc = await db.users.find_one({"id": current_user['user_id']}, {"_id": 0})
     customer_name = user_doc.get('name', 'Customer')
     customer_phone = user_doc.get('phone', '')
@@ -133,7 +126,6 @@ async def get_order(order_id: str, current_user: dict = Depends(get_current_user
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
     
-    # Check if order belongs to current user or user is admin
     if order['user_id'] != current_user['user_id'] and current_user.get('role') not in ['admin', 'supervisor', 'super_admin']:
         raise HTTPException(status_code=403, detail="Access denied")
     

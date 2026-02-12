@@ -1,21 +1,20 @@
 from fastapi import APIRouter, HTTPException, Depends
 from models.coupon import Coupon, CouponCreate, CouponValidate
 from middleware.auth import get_current_user
-from motor.motor_asyncio import AsyncIOMotorClient
-import os
 import uuid
 from datetime import datetime, timezone
 
 router = APIRouter(prefix="/coupons", tags=["Coupons"])
 
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+db = None
+
+def set_db(database):
+    global db
+    db = database
 
 @router.post("", dependencies=[Depends(get_current_user)])
 async def create_coupon(coupon: CouponCreate):
     """Create new coupon (Admin only)"""
-    # Check if coupon code already exists
     existing = await db.coupons.find_one({"code": coupon.code})
     if existing:
         raise HTTPException(status_code=400, detail="Coupon code already exists")

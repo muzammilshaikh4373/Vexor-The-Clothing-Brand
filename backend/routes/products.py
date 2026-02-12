@@ -1,17 +1,17 @@
 from fastapi import APIRouter, HTTPException, Query, Depends
 from models.product import Product, ProductCreate, ProductUpdate, ProductVariant
 from middleware.auth import get_current_user
-from motor.motor_asyncio import AsyncIOMotorClient
-import os
 import uuid
 from typing import Optional, List
 from datetime import datetime, timezone
 
 router = APIRouter(prefix="/products", tags=["Products"])
 
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+db = None
+
+def set_db(database):
+    global db
+    db = database
 
 @router.get("")
 async def get_products(
@@ -35,7 +35,6 @@ async def get_products(
         if max_price is not None:
             query['price']['$lte'] = max_price
     
-    # Sorting
     sort_options = {
         "newest": [("created_at", -1)],
         "price_low": [("price", 1)],
@@ -45,10 +44,8 @@ async def get_products(
     }
     sort = sort_options.get(sort_by, [("created_at", -1)])
     
-    # Count total
     total = await db.products.count_documents(query)
     
-    # Get products
     skip = (page - 1) * limit
     products = await db.products.find(query, {"_id": 0}).sort(sort).skip(skip).limit(limit).to_list(limit)
     

@@ -1,15 +1,15 @@
 from fastapi import APIRouter, HTTPException, Depends
 from middleware.auth import get_current_user
-from motor.motor_asyncio import AsyncIOMotorClient
-import os
 from datetime import datetime, timedelta, timezone
 from typing import Optional
 
 router = APIRouter(prefix="/admin", tags=["Admin"])
 
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+db = None
+
+def set_db(database):
+    global db
+    db = database
 
 async def require_admin(current_user: dict = Depends(get_current_user)):
     """Middleware to check admin access"""
@@ -20,7 +20,6 @@ async def require_admin(current_user: dict = Depends(get_current_user)):
 @router.get("/dashboard")
 async def get_dashboard_stats(current_user: dict = Depends(require_admin)):
     """Get dashboard statistics"""
-    # Total revenue
     pipeline_revenue = [
         {"$match": {"payment_status": "completed"}},
         {"$group": {"_id": None, "total": {"$sum": "$final_amount"}}}
@@ -28,7 +27,6 @@ async def get_dashboard_stats(current_user: dict = Depends(require_admin)):
     revenue_result = await db.orders.aggregate(pipeline_revenue).to_list(1)
     total_revenue = revenue_result[0]['total'] if revenue_result else 0
     
-    # Monthly sales
     thirty_days_ago = datetime.now(timezone.utc) - timedelta(days=30)
     pipeline_monthly = [
         {
@@ -42,16 +40,10 @@ async def get_dashboard_stats(current_user: dict = Depends(require_admin)):
     monthly_result = await db.orders.aggregate(pipeline_monthly).to_list(1)
     monthly_sales = monthly_result[0]['total'] if monthly_result else 0
     
-    # Total users
     total_users = await db.users.count_documents({})
-    
-    # Total orders
     total_orders = await db.orders.count_documents({})
-    
-    # Pending orders
     pending_orders = await db.orders.count_documents({"order_status": "pending"})
     
-    # Top selling products
     top_products = await db.products.find(
         {},
         {"_id": 0, "id": 1, "name": 1, "total_sold": 1, "price": 1, "images": 1}
