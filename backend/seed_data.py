@@ -77,6 +77,7 @@ async def seed_products():
             "category": "pants",
             "price": 2999,
             "discount_price": 2499,
+            "cost_price": 1500,
             "images": [
                 "https://images.unsplash.com/photo-1624378515195-6bbdb73dff1a?crop=entropy&cs=srgb&fm=jpg&q=85",
                 "https://images.unsplash.com/photo-1598522325074-042db73aa4e6?crop=entropy&cs=srgb&fm=jpg&q=85"
@@ -102,6 +103,7 @@ async def seed_products():
             "category": "tshirts",
             "price": 1299,
             "discount_price": None,
+            "cost_price": 600,
             "images": [
                 "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?crop=entropy&cs=srgb&fm=jpg&q=85",
                 "https://images.unsplash.com/photo-1622445275463-afa2ab738c34?crop=entropy&cs=srgb&fm=jpg&q=85"
@@ -126,6 +128,7 @@ async def seed_products():
             "category": "jackets",
             "price": 4999,
             "discount_price": 3999,
+            "cost_price": 2200,
             "images": [
                 "https://images.unsplash.com/photo-1551028719-00167b16eac5?crop=entropy&cs=srgb&fm=jpg&q=85",
                 "https://images.unsplash.com/photo-1516257984-b1b4d707412e?crop=entropy&cs=srgb&fm=jpg&q=85"
@@ -150,6 +153,7 @@ async def seed_products():
             "category": "shorts",
             "price": 2199,
             "discount_price": 1799,
+            "cost_price": 900,
             "images": [
                 "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?crop=entropy&cs=srgb&fm=jpg&q=85",
                 "https://images.unsplash.com/photo-1591195851280-0d04faa1c0ad?crop=entropy&cs=srgb&fm=jpg&q=85"
