@@ -269,9 +269,9 @@ export const ProductDetail = () => {
         </div>
 
         {/* Reviews Section */}
-        <div className=\"mt-16 border-t pt-16\">
-          <div className=\"flex items-center justify-between mb-8\">
-            <h2 className=\"font-heading text-3xl tracking-tight uppercase\">
+        <div className="mt-16 border-t pt-16">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="font-heading text-3xl tracking-tight uppercase">
               Customer Reviews ({reviews.length})
             </h2>
             {isAuthenticated && (
@@ -283,17 +283,17 @@ export const ProductDetail = () => {
 
           {/* Review Form */}
           {showReviewForm && (
-            <div className=\"bg-muted p-6 rounded-sm mb-8\">
-              <h3 className=\"font-bold text-lg mb-4\">Write Your Review</h3>
-              <div className=\"space-y-4\">
+            <div className="bg-muted p-6 rounded-sm mb-8">
+              <h3 className="font-bold text-lg mb-4">Write Your Review</h3>
+              <div className="space-y-4">
                 <div>
-                  <label className=\"block text-sm font-semibold mb-2\">Rating</label>
-                  <div className=\"flex gap-2\">
+                  <label className="block text-sm font-semibold mb-2">Rating</label>
+                  <div className="flex gap-2">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <button
                         key={star}
                         onClick={() => setNewReview({ ...newReview, rating: star })}
-                        className=\"text-2xl\"
+                        className="text-2xl"
                       >
                         <Star
                           className={`w-8 h-8 ${
@@ -307,15 +307,15 @@ export const ProductDetail = () => {
                   </div>
                 </div>
                 <div>
-                  <label className=\"block text-sm font-semibold mb-2\">Your Review</label>
+                  <label className="block text-sm font-semibold mb-2">Your Review</label>
                   <Textarea
                     rows={4}
-                    placeholder=\"Share your experience with this product...\"
+                    placeholder="Share your experience with this product..."
                     value={newReview.comment}
                     onChange={(e) => setNewReview({ ...newReview, comment: e.target.value })}
                   />
                 </div>
-                <div className=\"flex gap-2\">
+                <div className="flex gap-2">
                   <Button
                     onClick={async () => {
                       try {
@@ -327,10 +327,8 @@ export const ProductDetail = () => {
                         toast.success('Review submitted successfully!');
                         setShowReviewForm(false);
                         setNewReview({ rating: 5, comment: '' });
-                        // Refresh reviews
                         const reviewsResponse = await api.get(`/reviews/product/${product.id}`);
                         setReviews(reviewsResponse.data);
-                        // Refresh product to get updated ratings
                         const productResponse = await api.get(`/products/${slug}`);
                         setProduct(productResponse.data);
                       } catch (error) {
@@ -340,7 +338,7 @@ export const ProductDetail = () => {
                   >
                     Submit Review
                   </Button>
-                  <Button variant=\"outline\" onClick={() => setShowReviewForm(false)}>
+                  <Button variant="outline" onClick={() => setShowReviewForm(false)}>
                     Cancel
                   </Button>
                 </div>
@@ -350,21 +348,21 @@ export const ProductDetail = () => {
 
           {/* Reviews List */}
           {reviews.length === 0 ? (
-            <div className=\"text-center py-12 text-gray-500\">
+            <div className="text-center py-12 text-gray-500">
               <p>No reviews yet. Be the first to review this product!</p>
             </div>
           ) : (
-            <div className=\"space-y-6\">
+            <div className="space-y-6">
               {reviews.map((review) => (
-                <div key={review.id} className=\"border-b pb-6\">
-                  <div className=\"flex items-start gap-4\">
-                    <div className=\"w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center\">
-                      <User className=\"w-6 h-6 text-gray-600\" />
+                <div key={review.id} className="border-b pb-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+                      <User className="w-6 h-6 text-gray-600" />
                     </div>
-                    <div className=\"flex-1\">
-                      <div className=\"flex items-center gap-3 mb-2\">
-                        <span className=\"font-semibold\">{review.user_name}</span>
-                        <div className=\"flex\">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="font-semibold">{review.user_name}</span>
+                        <div className="flex">
                           {[...Array(5)].map((_, i) => (
                             <Star
                               key={i}
@@ -376,7 +374,7 @@ export const ProductDetail = () => {
                             />
                           ))}
                         </div>
-                        <span className=\"text-sm text-gray-500\">
+                        <span className="text-sm text-gray-500">
                           {new Date(review.created_at).toLocaleDateString('en-IN', {
                             day: 'numeric',
                             month: 'long',
@@ -384,7 +382,7 @@ export const ProductDetail = () => {
                           })}
                         </span>
                       </div>
-                      <p className=\"text-gray-700\">{review.comment}</p>
+                      <p className="text-gray-700">{review.comment}</p>
                     </div>
                   </div>
                 </div>
