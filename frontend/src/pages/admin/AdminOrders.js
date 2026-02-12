@@ -208,13 +208,22 @@ export const AdminOrders = () => {
                       </div>
                     </div>
                   </div>
-                  <Button
-                    onClick={() => navigate(`/order-confirmation/${order.id}`)}
-                    variant="outline"
-                    size="sm"
-                  >
-                    <Eye className="w-4 h-4 mr-2" /> View Full Details
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button
+                      onClick={() => navigate(`/order-confirmation/${order.id}`)}
+                      variant="outline"
+                      size="sm"
+                    >
+                      <Eye className="w-4 h-4 mr-2" /> View Details
+                    </Button>
+                    <Button
+                      onClick={() => navigate(`/admin/invoice/${order.id}`)}
+                      variant="outline"
+                      size="sm"
+                    >
+                      <FileText className="w-4 h-4 mr-2" /> Invoice
+                    </Button>
+                  </div>
                 </div>
               </div>
             ))}
