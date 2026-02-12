@@ -198,7 +198,7 @@ export const AdminProducts = () => {
                 />
               </div>
 
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-4 gap-4">
                 <div>
                   <Label>Price (₹) *</Label>
                   <Input
@@ -216,6 +216,17 @@ export const AdminProducts = () => {
                     step="0.01"
                     value={formData.discount_price}
                     onChange={(e) => setFormData({ ...formData, discount_price: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <Label>Cost Price (₹) *</Label>
+                  <Input
+                    required
+                    type="number"
+                    step="0.01"
+                    placeholder="For profit calc"
+                    value={formData.cost_price}
+                    onChange={(e) => setFormData({ ...formData, cost_price: e.target.value })}
                   />
                 </div>
                 <div>
