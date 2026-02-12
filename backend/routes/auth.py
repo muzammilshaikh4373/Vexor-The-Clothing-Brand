@@ -57,8 +57,12 @@ async def verify_otp_endpoint(request: VerifyOTPRequest):
             {"phone": request.phone},
             {"$set": {"is_verified": True}}
         )
+        # Ensure datetime is properly formatted for JSON serialization
         if isinstance(user_doc['created_at'], str):
-            user_doc['created_at'] = datetime.fromisoformat(user_doc['created_at'])
+            # Keep it as string for JSON serialization
+            pass
+        else:
+            user_doc['created_at'] = user_doc['created_at'].isoformat()
     
     # Create JWT token
     token = create_access_token({
