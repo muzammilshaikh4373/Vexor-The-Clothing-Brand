@@ -51,6 +51,7 @@ async def seed_products():
             "category": "tshirts",
             "price": 1499,
             "discount_price": 999,
+            "cost_price": 500,
             "images": [
                 "https://images.unsplash.com/photo-1544104030-d4ed20e87a86?crop=entropy&cs=srgb&fm=jpg&q=85",
                 "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?crop=entropy&cs=srgb&fm=jpg&q=85"
