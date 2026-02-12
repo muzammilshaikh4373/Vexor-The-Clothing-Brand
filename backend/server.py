@@ -13,13 +13,14 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-from routes import auth, products, orders, coupons, admin
+from routes import auth, products, orders, coupons, admin, reviews
 
 auth.set_db(db)
 products.set_db(db)
 orders.set_db(db)
 coupons.set_db(db)
 admin.set_db(db)
+reviews.set_db(db)
 
 app = FastAPI(title="VEXOR API", version="1.0.0")
 
