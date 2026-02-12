@@ -192,6 +192,11 @@ export const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Search Modal */}
+      <AnimatePresence>
+        {isSearchOpen && <SearchBar onClose={() => setIsSearchOpen(false)} />}
+      </AnimatePresence>
     </>
   );
 };
