@@ -18,6 +18,7 @@ import { Wishlist } from './pages/Wishlist';
 import { AdminDashboard } from './pages/AdminDashboard';
 import { AdminProducts } from './pages/admin/AdminProducts';
 import { AdminOrders } from './pages/admin/AdminOrders';
+import { Invoice } from './pages/admin/Invoice';
 import './App.css';
 
 function App() {
