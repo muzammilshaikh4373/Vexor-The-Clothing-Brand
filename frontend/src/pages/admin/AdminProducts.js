@@ -89,6 +89,7 @@ export const AdminProducts = () => {
       category: product.category,
       price: product.price.toString(),
       discount_price: product.discount_price?.toString() || '',
+      cost_price: product.cost_price?.toString() || '',
       images: product.images.join(', '),
       stock: product.stock.toString(),
       is_featured: product.is_featured,
