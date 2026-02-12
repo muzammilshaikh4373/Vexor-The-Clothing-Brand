@@ -136,11 +136,11 @@ export const Shop = () => {
             </SelectContent>
           </Select>
 
-          {currentCategory && (
+          {currentCategory && currentCategory !== 'all' && (
             <Button
               data-testid="clear-filters-button"
               variant="ghost"
-              onClick={() => handleCategoryChange('')}
+              onClick={() => handleCategoryChange('all')}
               className="text-sm"
             >
               Clear Filters
