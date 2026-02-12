@@ -125,8 +125,8 @@ export const AdminDashboard = () => {
             <Package className="w-12 h-12 mx-auto mb-4 text-primary" />
             <h3 className="font-bold uppercase tracking-wide mb-2">Manage Products</h3>
             <p className="text-sm text-gray-600 mb-4">Add, edit, or remove products</p>
-            <Button className="w-full" disabled>
-              Coming Soon
+            <Button onClick={() => navigate('/admin/products')} className="w-full">
+              Manage Products
             </Button>
           </div>
 
@@ -134,8 +134,8 @@ export const AdminDashboard = () => {
             <ShoppingBag className="w-12 h-12 mx-auto mb-4 text-primary" />
             <h3 className="font-bold uppercase tracking-wide mb-2">Manage Orders</h3>
             <p className="text-sm text-gray-600 mb-4">View and update order status</p>
-            <Button className="w-full" disabled>
-              Coming Soon
+            <Button onClick={() => navigate('/admin/orders')} className="w-full">
+              Manage Orders
             </Button>
           </div>
 
