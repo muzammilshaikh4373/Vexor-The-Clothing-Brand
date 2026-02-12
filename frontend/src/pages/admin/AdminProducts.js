@@ -117,6 +117,7 @@ export const AdminProducts = () => {
       category: '',
       price: '',
       discount_price: '',
+      cost_price: '',
       images: '',
       stock: '',
       is_featured: false,
