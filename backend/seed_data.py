@@ -25,6 +25,7 @@ async def seed_products():
             "category": "hoodies",
             "price": 3999,
             "discount_price": 2999,
+            "cost_price": 1800,
             "images": [
                 "https://images.unsplash.com/photo-1647768617268-06697e8a91d4?crop=entropy&cs=srgb&fm=jpg&q=85",
                 "https://images.unsplash.com/photo-1556821840-3a63f95609a7?crop=entropy&cs=srgb&fm=jpg&q=85"
