@@ -6,14 +6,20 @@ import os
 import logging
 from pathlib import Path
 
-from routes import auth, products, orders, coupons, admin
-
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
+
+from routes import auth, products, orders, coupons, admin
+
+auth.set_db(db)
+products.set_db(db)
+orders.set_db(db)
+coupons.set_db(db)
+admin.set_db(db)
 
 app = FastAPI(title="VEXOR API", version="1.0.0")
 
