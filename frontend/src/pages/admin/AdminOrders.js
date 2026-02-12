@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Package, Truck, CheckCircle, XCircle, Eye } from 'lucide-react';
+import { Package, Truck, CheckCircle, XCircle, Eye, FileText } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import {
   Select,
