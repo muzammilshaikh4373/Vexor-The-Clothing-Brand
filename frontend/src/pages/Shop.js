@@ -66,7 +66,7 @@ export const Shop = () => {
 
   const handleCategoryChange = (category) => {
     const params = new URLSearchParams(searchParams);
-    if (category) {
+    if (category && category !== 'all') {
       params.set('category', category);
     } else {
       params.delete('category');
