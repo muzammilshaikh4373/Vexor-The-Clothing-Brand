@@ -143,6 +143,8 @@ async def get_invoice_data(order_id: str, current_user: dict = Depends(require_a
     
     if isinstance(order.get('created_at'), str):
         order['created_at'] = datetime.fromisoformat(order['created_at'])
+    if isinstance(order.get('updated_at'), str):
+        order['updated_at'] = datetime.fromisoformat(order['updated_at'])
     
     return {
         "order": order,
